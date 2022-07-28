@@ -1,7 +1,7 @@
-import React from "react";
-import {Container, Row, Col, Form, Button} from "react-bootstrap";
+import React from 'react';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-function Search({word, setWord, handleSubmit}) {
+function Search({ word, setWord, handleSubmit }) {
   // function resetInputField(){
   //   setWord("");
   // }
@@ -13,14 +13,16 @@ function Search({word, setWord, handleSubmit}) {
             <Row>
               <Col xs={9}>
                 <Form.Control
-                    placeholder="Search for new image"
-                    type="text"
-                    value={word}//this creates a CONTROLLED input for React. The input is connected with the state of the application
-                    onChange={(e) => setWord(e.target.value)}
+                  placeholder="Search for new image"
+                  type="text"
+                  value={word} //this creates a CONTROLLED input for React. The input is connected with the state of the application
+                  onChange={(e) => setWord(e.target.value)}
                 />
               </Col>
               <Col>
-                <Button variant="primary" type="submit">Search</Button>
+                <Button variant="primary" type="submit">
+                  Search
+                </Button>
                 {/* <Button variant="primary" type="submit" onClick={resetInputField}>Search</Button> */}
               </Col>
             </Row>
