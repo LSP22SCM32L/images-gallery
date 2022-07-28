@@ -5,6 +5,8 @@ import Header from './components/Header';
 import Search from './components/Search';
 import {useState} from 'react';
 
+const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
+
 function App() {
   //word and setWord are new variables. word is part of the state of the
   // handleSearchSubmit component. When you want to update this word, you need
@@ -16,7 +18,19 @@ function App() {
   function handleSearchSubmit(e) {
     e.preventDefault();
     console.log(word);//access the inputted value when search is pressed
+    fetch(`https://api.unsplash.com/photos/random/?query=${word}&client_id=${UNSPLASH_KEY}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   };
+
+  console.log(process.env);
+  //could also access variables like this:
+  //console.log(process.env.REACT_APP_UNSPLASH_KEY);
   
   return (
     <div>
