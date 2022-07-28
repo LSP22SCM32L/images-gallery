@@ -2,6 +2,9 @@ import React from "react";
 import {Container, Row, Col, Form, Button} from "react-bootstrap";
 
 function Search({word, setWord, handleSubmit}) {
+  // function resetInputField(){
+  //   setWord("");
+  // }
   return (
     <Container className="mt-4">
       <Row className="justify-content-center">
@@ -18,6 +21,7 @@ function Search({word, setWord, handleSubmit}) {
               </Col>
               <Col>
                 <Button variant="primary" type="submit">Search</Button>
+                {/* <Button variant="primary" type="submit" onClick={resetInputField}>Search</Button> */}
               </Col>
             </Row>
           </Form>
