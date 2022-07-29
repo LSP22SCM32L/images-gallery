@@ -4,6 +4,7 @@ import requests
 # requests and send them to ANOTHER server. THIS IS SEPARATE FROM FLASK REQUEST
 from flask import Flask, request
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 load_dotenv(dotenv_path="./.env.local")
 
@@ -16,6 +17,7 @@ if not UNSPLASH_KEY:
 
 app = Flask(__name__)
 #__name__ is set at runtime and is the name of the module
+CORS(app)
 
 app.config["DEBUG"] = DEBUG
 
