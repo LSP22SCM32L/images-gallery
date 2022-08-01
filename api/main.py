@@ -29,7 +29,10 @@ def new_image():
     # this request objct is from FLASK which is used to access client
     # requests that is sent TO THE Flask application from the OTHER clients
 
-    headers = {"Authorization": f"Client-ID {UNSPLASH_KEY}", "Accept-Version": "v1"}
+    headers = {
+        "Authorization": f"Client-ID {UNSPLASH_KEY}",
+        "Accept-Version": "v1",
+    }
     params = {"query": word}
     response = requests.get(url=UNSPLASH_URL, headers=headers, params=params)
     data = response.json()
