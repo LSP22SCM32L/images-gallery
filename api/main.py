@@ -26,7 +26,7 @@ app.config["DEBUG"] = DEBUG
 @app.route("/new-image")
 def new_image():
     word = request.args.get("query")
-    # this request objct is from FLASK which is used to access client
+    # this request object is from FLASK which is used to access client
     # requests that is sent TO THE Flask application from the OTHER clients
 
     headers = {
