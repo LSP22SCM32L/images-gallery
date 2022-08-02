@@ -3,7 +3,7 @@ import Header from './components/Header';
 // "./" represents the CURRENT DIRECTORY where APP.js file is located
 //we dont have to use curly braces for Header because it was exported with default
 import Search from './components/Search';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ImageCard from './components/ImageCard';
 import { Container, Row, Col } from 'react-bootstrap';
 import Welcome from './components/Welcome';
@@ -19,6 +19,17 @@ function App() {
   // is entered by the user on the site
   const [word, setWord] = useState('');
   const [images, setImages] = useState([]);
+
+  async function getSavedImages() {
+    try {
+      const res = await axios.get(`${API_URL}/images`);
+      setImages(res.data || []);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => getSavedImages(), []);
 
   async function handleSearchSubmit(e) {
     e.preventDefault();

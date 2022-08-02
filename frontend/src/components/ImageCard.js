@@ -8,7 +8,8 @@ function ImageCard({ image, deleteImage }) {
       <Card.Img variant="top" src={image.urls.small} />
       <Card.Body>
         <Card.Title>
-          {image.title.charAt(0).toUpperCase() + image.title.slice(1)}
+          {/* feature image.title? question mark is called OPTIONAL CHAINING */}
+          {image.title?.charAt(0).toUpperCase() + image.title.slice(1)}
         </Card.Title>
         <Card.Text>{image.description || image.alt_description}</Card.Text>
         <Button variant="primary" onClick={() => deleteImage(image.id)}>
