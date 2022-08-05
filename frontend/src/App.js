@@ -58,6 +58,25 @@ function App() {
     setImages(images.filter((image) => image.id !== id));
   }
 
+  async function handleSaveImage(id) {
+    const imageToBeSaved = images.find((image) => image.id === id);
+    imageToBeSaved.saved = true;
+
+    try {
+      const res = await axios.post(`${API_URL}/images`, imageToBeSaved);
+      if (res.data?.inserted_id) {
+        setImages(
+          images.map((image) =>
+            image.id === id ? { ...image, saved: true } : image
+          )
+        );
+      }
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   // console.log(process.env);
   //could also access variables like this:
   //console.log(process.env.REACT_APP_UNSPLASH_KEY);
@@ -69,9 +88,13 @@ function App() {
       <Container className="mt-4">
         {images.length ? (
           <Row xs={1} md={2} lg={3}>
-            {images.map((image, index) => (
-              <Col key={index} className="pb-3">
-                <ImageCard image={image} deleteImage={handleDeleteImage} />
+            {images.map((image, i) => (
+              <Col key={i} className="pb-3">
+                <ImageCard
+                  image={image}
+                  deleteImage={handleDeleteImage}
+                  saveImage={handleSaveImage}
+                />
               </Col>
             ))}
           </Row>
