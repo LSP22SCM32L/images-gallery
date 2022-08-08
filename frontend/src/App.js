@@ -20,16 +20,19 @@ function App() {
   const [word, setWord] = useState('');
   const [images, setImages] = useState([]);
 
-  async function getSavedImages() {
-    try {
-      const res = await axios.get(`${API_URL}/images`);
-      setImages(res.data || []);
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    async function getSavedImages() {
+      try {
+        const res = await axios.get(`${API_URL}/images`);
+        setImages(res.data || []);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
+    getSavedImages();
+  }, []);
 
-  useEffect(() => getSavedImages(), []);
+  // useEffect(() => getSavedImages(), []);
 
   async function handleSearchSubmit(e) {
     e.preventDefault();
@@ -54,8 +57,15 @@ function App() {
     setWord('');
   }
 
-  function handleDeleteImage(id) {
-    setImages(images.filter((image) => image.id !== id));
+  async function handleDeleteImage(id) {
+    try {
+      const res = await axios.delete(`${API_URL}/images/${id}`);
+      if (res.data?.deleted_id) {
+        setImages(images.filter((image) => image.id !== id));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function handleSaveImage(id) {
